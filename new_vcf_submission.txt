@@ -1,0 +1,37 @@
+new vcf
+
+for i in ls *primaryalignment.bam;
+ do 
+    subheader.sh ${i}.single_assembly.vcf.sub 12G 12:00:00 > ${i}.single_assembly.vcf.sub; 
+    echo "bcftools mpileup -f Hungate_genomes_assemblies.fna -Ou ${i}| bcftools call -m -v -O v --ploidy 1 -A -o ${i}.single_assembly.vcf" >> ${i}.single_assembly.vcf.sub;
+ done
+
+
+for i in ls *hungate_alignment.sam;
+do
+    subheader.sh ${i}.hungate.alignment.sam 2G 12:00:00 > ${i}.hungate_sam2bam_2.sub;
+    echo "samtools sort ${i} > ${i}.bam" >> ${i}.hungate_sam2bam_2.sub;
+    echo "samtools index ${i}.bam" >> ${i}.hungate_sam2bam_2.sub;
+done
+
+bcftools mpileup -f Hungate_genomes_assemblies.fna -Ou SRR1222431hungate_alignment.bam.new_primary_alignment.bam| bcftools call -m -v -O v --ploidy 1 -A -o  SRR1222431hungate_alignment.bam.new_primary_alignment.bam.single_assembly.vcf
+
+
+SRR1222429hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub 
+ SRR873603hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub
+SRR1222431hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub  
+SRR873604hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub
+SRR873595hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub  
+SRR873605hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub
+SRR873596hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub   
+SRR873606hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub
+SRR873597hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub   
+SRR873607hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub
+SRR873598hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub  
+SRR873608hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub
+SRR873599hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub   
+SRR873609hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub
+SRR873600hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub   
+SRR873610hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub
+SRR873601hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub   verysensitivelocal-SRR1206671sorted.primaryalignment.bam.single_assembly.vcf.sub
+SRR873602hungate_alignment.primaryalignment.bam.single_assembly.vcf.sub
