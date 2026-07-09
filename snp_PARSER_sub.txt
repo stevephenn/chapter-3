@@ -1,0 +1,4 @@
+
+$ export SAMPLES=$(for file in *primaryalignment.bam; do echo -m `basename $file .primaryalignment.bam`;done)
+$ snp_parser -s -v -g Hungate_genomes_annotations.gff -p  20_assembly_long.vcf -a  Hungate_genomes_assemblies.fna $SAMPLES
+$ unset SAMPLES
